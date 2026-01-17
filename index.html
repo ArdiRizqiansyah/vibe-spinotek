@@ -3,15 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ruang Karya | Spinotek</title>
-    <link
-      rel="shortcut icon"
-      href="assets/images/favicon.png"
-      type="image/x-icon"
+
+    <title>Spinotek Labs | Creative Lab & Prototype Center</title>
+    <meta
+      name="title"
+      content="Spinotek Labs | Creative Lab & Prototype Center"
     />
+    <meta
+      name="description"
+      content="Wadah kolaborasi karya kreatif, prototipe web, dan eksperimen Vibecoding dari tim Spinotek dan komunitas mahasiswa."
+    />
+    <meta name="author" content="Spinotek" />
+    <meta
+      name="keywords"
+      content="Spinotek, Labs, Vibecoding, Web Development, Prototype, Community, Creative Lab"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vibe.spinotek.com/" />
+    <meta
+      property="og:title"
+      content="Spinotek Labs | Creative Lab & Prototype Center"
+    />
+    <meta
+      property="og:description"
+      content="Eksplorasi karya kreatif dan prototipe digital terbaik dari komunitas. Share your vibes here!"
+    />
+    <meta
+      property="og:image"
+      content="https://vibe.spinotek.com/images/spinotek-logo.png"
+    />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://vibe.spinotek.com/" />
+    <meta
+      property="twitter:title"
+      content="Spinotek Labs | Creative Lab & Prototype Center"
+    />
+    <meta
+      property="twitter:description"
+      content="Eksplorasi karya kreatif dan prototipe digital terbaik dari komunitas. Share your vibes here!"
+    />
+    <meta
+      property="twitter:image"
+      content="https://vibe.spinotek.com/images/spinotek-logo.png"
+    />
+
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="apple-touch-icon" href="images/favicon.png" />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700;800&display=swap"
       rel="stylesheet"
     />
     <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
@@ -214,7 +257,7 @@
           if (!Array.isArray(data)) return;
 
           // FILTER: Hanya ambil folder, dan abaikan folder sistem/aset
-          const excludedFolders = ["images", ".github", "node_modules"];
+          const excludedFolders = ["assets", ".github", "node_modules"];
           const folders = data.filter(
             item => item.type === "dir" && !excludedFolders.includes(item.name),
           );
