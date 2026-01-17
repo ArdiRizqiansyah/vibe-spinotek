@@ -11,42 +11,42 @@
     />
     <meta
       name="description"
-      content="Wadah kolaborasi karya kreatif, prototipe web, dan eksperimen Vibecoding dari tim Spinotek dan komunitas mahasiswa."
+      content="Wadah kolaborasi karya kreatif, prototipe web, dan eksperimen inovatif dari tim Spinotek dan komunitas."
     />
     <meta name="author" content="Spinotek" />
     <meta
       name="keywords"
-      content="Spinotek, Labs, Vibecoding, Web Development, Prototype, Community, Creative Lab"
+      content="Spinotek, Labs, Web Development, Prototype, Community, Creative Lab, Inovasi Digital"
     />
 
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://vibe.spinotek.com/" />
+    <meta property="og:url" content="https://lab.spinotek.com/" />
     <meta
       property="og:title"
       content="Spinotek Labs | Creative Lab & Prototype Center"
     />
     <meta
       property="og:description"
-      content="Eksplorasi karya kreatif dan prototipe digital terbaik dari komunitas. Share your vibes here!"
+      content="Eksplorasi karya kreatif dan prototipe digital terbaik dari komunitas Spinotek."
     />
     <meta
       property="og:image"
-      content="https://vibe.spinotek.com/assets/images/spinotek-logo.png"
+      content="https://lab.spinotek.com/assets/images/spinotek-logo.png"
     />
 
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://vibe.spinotek.com/" />
+    <meta property="twitter:url" content="https://lab.spinotek.com/" />
     <meta
       property="twitter:title"
       content="Spinotek Labs | Creative Lab & Prototype Center"
     />
     <meta
       property="twitter:description"
-      content="Eksplorasi karya kreatif dan prototipe digital terbaik dari komunitas. Share your vibes here!"
+      content="Eksplorasi karya kreatif dan prototipe digital terbaik dari komunitas Spinotek."
     />
     <meta
       property="twitter:image"
-      content="https://vibe.spinotek.com/assets/images/spinotek-logo.png"
+      content="https://lab.spinotek.com/assets/images/spinotek-logo.png"
     />
 
     <link rel="icon" type="image/png" href="assets/images/favicon.png" />
@@ -64,6 +64,8 @@
         font-family: "Space Grotesk", sans-serif;
         background-color: #050505;
         color: #ffffff;
+        /* Tambahkan ini untuk mencegah scroll horizontal di mobile */
+        overflow-x: hidden;
       }
       .logo-white {
         filter: brightness(0) invert(1);
@@ -73,6 +75,8 @@
           linear-gradient(to right, #121212 1px, transparent 1px),
           linear-gradient(to bottom, #121212 1px, transparent 1px);
         background-size: 60px 60px;
+        /* Tambahkan ini agar grid-bg tidak pecah di mobile */
+        background-attachment: fixed;
       }
       .neo-card {
         background: #0a0a0a;
@@ -213,12 +217,12 @@
 
       typewriter
         .typeString(
-          'Manifestasi <span class="text-white font-medium">Vibecoding</span> tim Spinotek.',
+          'Eksplorasi ide dan inovasi digital <span class="text-white font-medium">Tim Spinotek</span>.',
         )
         .pauseFor(1500)
-        .deleteChars(45)
+        .deleteChars(55)
         .typeString(
-          'Wadah kolaborasi karya kreatif <span class="text-blue-500 font-medium">Mahasiswa</span>.',
+          'Wadah kolaborasi karya kreatif <span class="text-blue-500 font-medium">Komunitas</span>.',
         )
         .pauseFor(1500)
         .deleteChars(42)
@@ -266,28 +270,28 @@
               "neo-card group p-8 flex flex-col justify-between min-h-[260px]";
 
             card.innerHTML = `
-                    <div>
-                        <div class="flex justify-between items-center mb-6">
-                            <span class="text-blue-600 font-mono text-[10px] tracking-widest font-bold">ENTRY_0${index + 1}</span>
-                            <span class="text-gray-800 text-[10px] font-mono tracking-tighter">LIVE_VIBE</span>
-                        </div>
-                        <h3 class="text-3xl font-bold leading-tight group-hover:text-blue-500 transition-colors uppercase tracking-tighter">
-                            ${folder.name.replace(/-/g, " ")}
-                        </h3>
-                    </div>
-                    
-                    <div class="flex items-end justify-between mt-12">
-                        <div class="flex flex-col">
-                            <span class="text-gray-600 text-[10px] tracking-tighter uppercase font-bold italic underline">Vibed by: Community</span>
-                            <span class="text-blue-500 text-[10px] tracking-tighter uppercase font-mono">Status: Active_Stream</span>
-                        </div>
-                        <div class="h-12 w-12 flex items-center justify-center border border-white/10 rounded-full group-hover:border-blue-500 group-hover:bg-blue-500 transition-all duration-300">
-                            <svg class="w-5 h-5 group-hover:text-black transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path d="M7 17L17 7M17 7H7M17 7V17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                        </div>
-                    </div>
-                `;
+              <div>
+                  <div class="flex justify-between items-center mb-6">
+                      <span class="text-blue-600 font-mono text-[10px] tracking-widest font-bold">ENTRY_0${index + 1}</span>
+                      <span class="text-gray-800 text-[10px] font-mono tracking-tighter">LAB_STATION_0${index + 1}</span>
+                  </div>
+                  <h3 class="text-3xl font-bold leading-tight group-hover:text-blue-500 transition-colors uppercase tracking-tighter">
+                      ${folder.name.replace(/-/g, " ")}
+                  </h3>
+              </div>
+              
+              <div class="flex items-end justify-between mt-12">
+                  <div class="flex flex-col">
+                      <span class="text-gray-600 text-[10px] tracking-tighter uppercase font-bold italic underline">Built by: Community</span>
+                      <span class="text-blue-500 text-[10px] tracking-tighter uppercase font-mono">Status: Stable_Build</span>
+                  </div>
+                  <div class="h-12 w-12 flex items-center justify-center border border-white/10 rounded-full group-hover:border-blue-500 group-hover:bg-blue-500 transition-all duration-300">
+                      <svg class="w-5 h-5 group-hover:text-black transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path d="M7 17L17 7M17 7H7M17 7V17" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                  </div>
+              </div>
+          `;
             grid.appendChild(card);
           });
         } catch (error) {
