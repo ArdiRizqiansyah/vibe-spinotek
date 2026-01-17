@@ -1,28 +1,29 @@
-# 🌊 THE STREAM - Spinotek Creative Lab
+# 🌊 Spinotek Labs — Keep the Vibe Coding!
 
-Platform koleksi karya kreatif (Vibecoding) dari tim Spinotek dan komunitas.  
-Live at: [vibe.spinotek.com](https://vibe.spinotek.com)
+Wadah buat pamer karya, prototipe, atau hasil eksperimen UI/UX kamu. Di sini tempatnya kita kumpulin energi kreatif dari tim Spinotek dan kamu semua! 🚀
 
-## 🚀 Cara "Drop Your Work"
+Cek galerinya di: [vibe.spinotek.com](https://vibe.spinotek.com)
 
-Sederhanakan URL karya Anda (menjadi `vibe.spinotek.com/nama-karya`) dengan mengikuti langkah ini:
+## 🎨 Mau Drop Karya?
 
-1. **Fork** repositori ini.
-2. Buat folder baru **langsung di root** (folder utama) repositori.
-   - Gunakan nama folder yang singkat (contoh: `karya-keren`).
-   - Hindari spasi, gunakan tanda hubung `-` (contoh: `web-proto`).
-3. Isi folder tersebut dengan:
-   - `index.html` (Wajib ada sebagai file utama).
-   - File pendukung lainnya (CSS, JS, Images).
-4. Pastikan semua path aset bersifat **Relatif** (contoh: `./style.css`, bukan `/style.css`).
-5. Lakukan **Pull Request** ke branch `main`.
+Bikin link karya kamu jadi makin kece (misal: `vibe.spinotek.com/nama-karya-kamu`) cuma dengan beberapa langkah simpel ini:
 
-## 📂 Contoh Struktur
+1. **Fork** repo ini ke akun GitHub kamu.
+2. **Bikin Folder Baru** langsung di halaman depan (root).
+   - Kasih nama folder yang singkat & padat (contoh: `karya-kece`).
+   - Jangan pakai spasi ya, ganti pakai tanda hubung aja (contoh: `web-proto-v1`).
+3. **Drop File Kamu** ke dalam folder tadi:
+   - Wajib ada `index.html` sebagai file utamanya.
+   - Masukin juga aset lainnya kayak CSS, JS, atau gambar.
+4. **Cek Path Aset!** Pastikan panggil file CSS/JS pakai path relatif (contoh: `./style.css`, jangan `/style.css`) biar nggak error pas di-load.
+5. **Kirim Pull Request!** Gas ajukan PR ke branch `master`.
+
+## 📂 Contoh Strukturnya Kayak Gini:
 ```text
 / (root)
-├── index.html (Halaman THE STREAM)
-├── agramas/
+├── index.html       <-- Halaman utama Spinotek Labs
+├── relist/         <-- Folder karya (URL: [vibe.spinotek.com/relist](https://vibe.spinotek.com/relist))
 │   └── index.html
-└── karya-kamu/
+└── karya-kamu/      <-- Folder karya kamu sendiri
     ├── index.html
     └── style.css
