@@ -13,6 +13,8 @@ const questionBank = [
   { q: "MATAHARI", a: "Sun", options: ["Moon", "Star", "Sun", "Cloud"] },
   { q: "KUCING", a: "Cat", options: ["Dog", "Cat", "Bird", "Rabbit"] },
   { q: "JERUK", a: "Orange", options: ["Apple", "Grape", "Orange", "Banana"] },
+  { q: "TAS", a: "Bag", options: ["Table", "Bag", "Chair", "Lamp"] },
+  { q: "PINTU", a: "Door", options: ["Window", "Door", "Wall", "Floor"] },
 ];
 
 let gameState = {
@@ -46,12 +48,12 @@ startBtn.onclick = () => {
   let count = 3;
 
   const countInterval = setInterval(() => {
-    countdownEl.innerText = count;
+    countdownEl.innerText = count === 0 ? "GO!" : count;
     countdownEl.classList.remove("animate__zoomIn");
     void countdownEl.offsetWidth;
     countdownEl.classList.add("animate__zoomIn");
 
-    if (count === 0) {
+    if (count < 0) {
       clearInterval(countInterval);
       countdownEl.classList.add("hidden");
       initGame();
@@ -75,28 +77,36 @@ function initGame() {
 
 function showQuestion(team) {
   const teamData = gameState[team];
+  const qEl = document.getElementById(`q${team}`);
+  const cEl = document.getElementById(`choices${team}`);
 
   if (teamData.currentIdx >= questionBank.length) {
     teamData.active = false;
     teamData.finished = true;
     clearInterval(teamData.timer);
-    document.getElementById(`q${team}`).innerText = "FINISH! 🏁";
-    document.getElementById(`choices${team}`).innerHTML = "";
+    qEl.innerText = "MISSION COMPLETE 🏁";
+    qEl.classList.add("text-sky-400");
+    cEl.innerHTML = "";
     checkGameOver();
     return;
   }
 
   const currentQ = questionBank[teamData.currentIdx];
-  document.getElementById(`q${team}`).innerText = currentQ.q;
-  const cEl = document.getElementById(`choices${team}`);
-  cEl.innerHTML = "";
+  qEl.innerText = currentQ.q;
 
+  // Efek transisi soal
+  qEl.classList.remove("animate__fadeInUp");
+  void qEl.offsetWidth;
+  qEl.classList.add("animate__fadeInUp", "animate__animated");
+
+  cEl.innerHTML = "";
   [...currentQ.options]
     .sort(() => Math.random() - 0.5)
     .forEach(opt => {
       const btn = document.createElement("button");
       btn.innerText = opt;
-      btn.className = `choice-btn p-5 text-2xl font-black rounded-2xl text-white ${team === 1 ? "bg-blue-500" : "bg-red-500"}`;
+      // Menyesuaikan dengan class CSS Glassmorphism
+      btn.className = `choice-btn py-6 px-4 rounded-2xl text-xl font-bold text-white uppercase tracking-widest`;
       btn.onclick = () => handleAnswer(team, opt, btn);
       cEl.appendChild(btn);
     });
@@ -112,7 +122,6 @@ function handleAnswer(team, selected, btn) {
   const isCorrect = selected === questionBank[teamData.currentIdx].a;
   const sfx = document.getElementById(isCorrect ? "sfx-correct" : "sfx-wrong");
   const rocket = document.getElementById(`rocket${team}`);
-  const fire = rocket.querySelector(".fire-particle");
 
   sfx.currentTime = 0;
   sfx.play();
@@ -122,27 +131,26 @@ function handleAnswer(team, selected, btn) {
     btn.classList.add("correct");
     document.getElementById(`score${team}`).innerText = teamData.score;
 
-    // ANIMASI ROKET MELUNCUR
-    rocket.classList.add("launching");
-    fire.style.opacity = "1";
+    // ANIMASI ROKET MELUNCUR (Menambahkan class ke parent untuk menyalakan api/thruster)
+    rocket.parentElement.parentElement.classList.add("launching");
 
     const progress = ((teamData.currentIdx + 1) / questionBank.length) * 85;
     rocket.style.bottom = `${progress}%`;
 
-    // Matikan api setelah meluncur selesai
+    // Matikan thruster setelah meluncur selesai
     setTimeout(() => {
-      rocket.classList.remove("launching");
-      fire.style.opacity = "0";
+      rocket.parentElement.parentElement.classList.remove("launching");
     }, 800);
   } else {
     btn.classList.add("wrong");
-    // ANIMASI ROKET ERROR (Goncang di tempat)
+    // ANIMASI ROKET ERROR (Goncang)
     rocket.classList.add("animate__animated", "animate__headShake");
     setTimeout(() => {
       rocket.classList.remove("animate__animated", "animate__headShake");
     }, 500);
   }
 
+  // Kunci tombol agar tidak bisa klik berkali-kali
   btn.parentElement
     .querySelectorAll("button")
     .forEach(b => (b.disabled = true));
@@ -156,11 +164,17 @@ function handleAnswer(team, selected, btn) {
 function startTimer(team) {
   const teamData = gameState[team];
   teamData.timeLeft = 10;
-  document.getElementById(`timer${team}`).innerText = "10";
+  const timerDisplay = document.getElementById(`timer${team}`);
+  timerDisplay.innerText = "10";
+  timerDisplay.classList.remove("text-red-500");
 
   teamData.timer = setInterval(() => {
     teamData.timeLeft--;
-    document.getElementById(`timer${team}`).innerText = teamData.timeLeft;
+    timerDisplay.innerText = teamData.timeLeft;
+
+    // Warning jika waktu mau habis
+    if (teamData.timeLeft <= 3) timerDisplay.classList.add("text-red-500");
+
     if (teamData.timeLeft <= 0) {
       clearInterval(teamData.timer);
       teamData.currentIdx++;
@@ -182,18 +196,21 @@ function checkGameOver() {
 
       const winTitle = document.getElementById("winner-team-name");
       if (s1 > s2) {
-        winTitle.innerText = "TIM BIRU MENANG!";
-        winTitle.className = "text-7xl font-black text-blue-400 mb-6";
+        winTitle.innerText = "TEAM ALPHA MENANG! 🏆";
+        winTitle.className =
+          "text-7xl font-black text-sky-400 mb-6 tracking-tighter";
       } else if (s2 > s1) {
-        winTitle.innerText = "TIM MERAH MENANG!";
-        winTitle.className = "text-7xl font-black text-red-400 mb-6";
+        winTitle.innerText = "TEAM BRAVO MENANG! 🏆";
+        winTitle.className =
+          "text-7xl font-black text-purple-400 mb-6 tracking-tighter";
       } else {
-        winTitle.innerText = "SKOR SERI!";
-        winTitle.className = "text-7xl font-black text-yellow-400 mb-6";
+        winTitle.innerText = "MISI SERI! 🤝";
+        winTitle.className =
+          "text-7xl font-black text-white mb-6 tracking-tighter";
       }
 
       launchFinalFireworks();
-    }, 1000);
+    }, 1200);
   }
 }
 
@@ -207,14 +224,14 @@ function launchFinalFireworks() {
       angle: 60,
       spread: 55,
       origin: { x: 0 },
-      colors: ["#3b82f6", "#fbbf24"],
+      colors: ["#38bdf8", "#ffffff"],
     });
     confetti({
       particleCount: 5,
       angle: 120,
       spread: 55,
       origin: { x: 1 },
-      colors: ["#ef4444", "#fbbf24"],
+      colors: ["#a855f7", "#ffffff"],
     });
     if (Date.now() < end) requestAnimationFrame(frame);
   })();
